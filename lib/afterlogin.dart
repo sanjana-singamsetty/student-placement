@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ui/Attendance.dart';
 import 'package:ui/CompanyFeedback.dart';
 import 'package:ui/ContactSupport.dart';
+import 'package:ui/Events.dart';
 import 'package:ui/PlacementCorner.dart';
+import 'package:ui/RevisionMaterial.dart';
 import 'package:ui/Settings.dart';
 import 'package:ui/StudentFeedback.dart';
 
@@ -81,7 +83,7 @@ class NavigationPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NavigationPage()),
+                  MaterialPageRoute(builder: (context) => const RegisterUser()),
                 );
               },
               hoverColor: thirdColor.withOpacity(0.5),
@@ -127,15 +129,25 @@ class NavigationPage extends StatelessWidget {
               hoverColor: thirdColor.withOpacity(0.5),
             ),
             ListTile(
-              title: const Text('Settings'),
+              title: const Text('Events'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Settings()),
+                  MaterialPageRoute(builder: (context) => EventPage()),
                 );
               },
               hoverColor: thirdColor.withOpacity(0.5),
+
             ),
+        ListTile(
+          title: const Text('Settings'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Settings()),
+            );
+          },
+          hoverColor: thirdColor.withOpacity(0.5),),
           ],
         ),
       ),
