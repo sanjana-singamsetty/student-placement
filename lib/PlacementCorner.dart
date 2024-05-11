@@ -7,7 +7,7 @@ class CardExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Student Card Example'),
+        title: Text('Placement Corner'),
         backgroundColor: mainColor,
       ),
       body: Container(

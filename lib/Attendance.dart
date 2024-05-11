@@ -8,7 +8,10 @@ class AttendancePage extends StatelessWidget {
         title: Text('Attendance Page'),
         backgroundColor: mainColor,
       ),
-      body: Attendance(),
+      body: Container(
+        color: secondaryColor,
+        child: Attendance(),
+      ),
     );
   }
 }
@@ -42,55 +45,62 @@ class _AttendanceState extends State<Attendance> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          CardView(
-            title: 'Attendance',
-            content: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CheckboxButton(
-                  label: 'Technical',
-                  isSelected: isTechnicalSelected,
-                  onSelected: (value) {
-                    setState(() {
-                      isTechnicalSelected = value;
-                    });
-                  },
-                ),
-                CheckboxButton(
-                  label: 'Domain',
-                  isSelected: isDomainSelected,
-                  onSelected: (value) {
-                    setState(() {
-                      isDomainSelected = value;
-                    });
-                  },
-                ),
-              ],
+          SizedBox(height: 16.0),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: CardView(
+              title: 'Attendance',
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CheckboxButton(
+                    label: 'Technical',
+                    isSelected: isTechnicalSelected,
+                    onSelected: (value) {
+                      setState(() {
+                        isTechnicalSelected = value;
+                      });
+                    },
+                  ),
+                  CheckboxButton(
+                    label: 'Domain',
+                    isSelected: isDomainSelected,
+                    onSelected: (value) {
+                      setState(() {
+                        isDomainSelected = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(height: 16.0),
           // Attendance table (conditionally visible)
           if (isTechnicalSelected || isDomainSelected)
-            CardView(
-              title: 'Attendance Table',
-              content: DataTable(
-                columnSpacing: 24.0,
-                columns: [
-                  DataColumn(label: Text('Week', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
-                  DataColumn(label: Text('Date', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
-                  if (isTechnicalSelected) DataColumn(label: Text('Technical', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
-                  if (isDomainSelected) DataColumn(label: Text('Domain', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
-                  DataColumn(label: Text('Weeklyatt', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
-                ],
-                rows: attendanceData.map((data) {
-                  return DataRow(cells: [
-                    DataCell(Text(data['week'] ?? '', style: TextStyle(color: fourthColor))),
-                    DataCell(Text(data['date'] ?? '', style: TextStyle(color: fourthColor))),
-                    if (isTechnicalSelected) DataCell(Text(data['technical'] ?? '', style: TextStyle(color: fourthColor))),
-                    if (isDomainSelected) DataCell(Text(data['domain'] ?? '', style: TextStyle(color: fourthColor))),
-                    DataCell(Text(data['weeklyAttendance'] ?? '', style: TextStyle(color: fourthColor))),
-                  ]);
-                }).toList(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: CardView(
+                title: 'Attendance Table',
+                content: DataTable(
+                  columnSpacing: 24.0,
+                  columns: [
+                    DataColumn(label: Text('Week', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
+                    DataColumn(label: Text('Date', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
+                    if (isTechnicalSelected) DataColumn(label: Text('Technical', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
+                    if (isDomainSelected) DataColumn(label: Text('Domain', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
+                    DataColumn(label: Text('Weeklyatt', style: TextStyle(fontWeight: FontWeight.bold, color: thirdColor))),
+                  ],
+                  rows: attendanceData.map((data) {
+                    return DataRow(cells: [
+                      DataCell(Text(data['week'] ?? '', style: TextStyle(color: fourthColor))),
+                      DataCell(Text(data['date'] ?? '', style: TextStyle(color: fourthColor))),
+                      if (isTechnicalSelected) DataCell(Text(data['technical'] ?? '', style: TextStyle(color: fourthColor))),
+                      if (isDomainSelected) DataCell(Text(data['domain'] ?? '', style: TextStyle(color: fourthColor))),
+                      DataCell(Text(data['weeklyAttendance'] ?? '', style: TextStyle(color: fourthColor))),
+                    ]);
+                  }).toList(),
+                ),
               ),
             ),
         ],
@@ -109,6 +119,7 @@ class CardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 4.0,
+      color: secondaryColor,
       child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(

@@ -32,37 +32,43 @@ class _EventPageState extends State<EventPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Upcoming Events'),
+        backgroundColor: mainColor,
       ),
       body: ListView.builder(
         itemCount: events.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(
-              events[index].name,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: mainColor,
+          return Card(
+            elevation: 4.0,
+            margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            color: secondaryColor,
+            child: ListTile(
+              title: Text(
+                events[index].name,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: fourthColor,
+                ),
               ),
+              subtitle: Text(
+                'Starts: ${events[index].date.toString()}\nDuration: ${events[index].duration.inHours} hours',
+                style: TextStyle(color: thirdColor),
+              ),
+              onTap: () async {
+                bool permissionGranted = await _checkCameraPermission();
+                if (permissionGranted) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => QRScanPage(),
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Camera permission denied.'),
+                  ));
+                }
+              },
             ),
-            subtitle: Text(
-              'Starts: ${events[index].date.toString()}\nDuration: ${events[index].duration.inHours} hours',
-              style: TextStyle(color: thirdColor),
-            ),
-            onTap: () async {
-              bool permissionGranted = await _checkCameraPermission();
-              if (permissionGranted) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => QRScanPage(),
-                  ),
-                );
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text('Camera permission denied.'),
-                ));
-              }
-            },
           );
         },
       ),
@@ -97,6 +103,7 @@ class _QRScanPageState extends State<QRScanPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Scan QR Code'),
+        backgroundColor: mainColor,
       ),
       body: Column(
         children: <Widget>[

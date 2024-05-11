@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui/Alumini.dart';
 import 'package:ui/Attendance.dart';
 import 'package:ui/CompanyFeedback.dart';
 import 'package:ui/ContactSupport.dart';
@@ -7,6 +8,8 @@ import 'package:ui/PlacementCorner.dart';
 import 'package:ui/RevisionMaterial.dart';
 import 'package:ui/Settings.dart';
 import 'package:ui/StudentFeedback.dart';
+import 'package:ui/mypractice.dart';
+import 'package:ui/performance.dart';
 
 import 'Homepage.dart';
 
@@ -79,6 +82,33 @@ class NavigationPage extends StatelessWidget {
               hoverColor: thirdColor.withOpacity(0.5),
             ),
             ListTile(
+              title: const Text('My Performance'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PerformanceScreen()),
+                );
+              },
+              hoverColor: thirdColor.withOpacity(0.5),),
+            ListTile(
+              title: const Text('My Practice'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyPracticeScreen()),
+                );
+              },
+              hoverColor: thirdColor.withOpacity(0.5),),
+            ListTile(
+              title: const Text('Alumini Repository'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AlumniScreen()),
+                );
+              },
+              hoverColor: thirdColor.withOpacity(0.5),),
+            ListTile(
               title: const Text('Revision Material'),
               onTap: () {
                 Navigator.push(
@@ -119,7 +149,7 @@ class NavigationPage extends StatelessWidget {
               hoverColor: thirdColor.withOpacity(0.5),
             ),
             ListTile(
-              title: const Text('Contact Us'),
+              title: const Text('Placement Policy'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -148,18 +178,20 @@ class NavigationPage extends StatelessWidget {
             );
           },
           hoverColor: thirdColor.withOpacity(0.5),),
+
           ],
+
         ),
+
       ),
 
       body: Container(
         color: secondaryColor,
-        child: MotivationalQuoteCard(),
+        child: HomePage(),
       ),
     );
   }
 }
-
 class MotivationalQuoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -167,45 +199,48 @@ class MotivationalQuoteCard extends StatelessWidget {
       color: secondaryColor,
       elevation: 4.0,
       margin: EdgeInsets.all(16.0),
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Motivational Quote',
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-                color: fourthColor,
+      child: SingleChildScrollView( // Wrap with SingleChildScrollView
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Motivational Quote',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: fourthColor,
+                ),
               ),
-            ),
-            SizedBox(height: 16.0),
-            Text(
-              '"You are braver than you believe, stronger than you seem, and smarter than you think."',
-              style: TextStyle(fontSize: 16, color: thirdColor),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Remember, your hard work will pay off!',
-              style: TextStyle(fontSize: 16, color: thirdColor),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Placements are crucial for your future. Stay motivated!',
-              style: TextStyle(fontSize: 16, color: thirdColor),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'You are eligible for placements.',
-              style: TextStyle(fontSize: 16, color: thirdColor),
-            ),
-          ],
+              SizedBox(height: 16.0),
+              Text(
+                '"You are braver than you believe, stronger than you seem, and smarter than you think."',
+                style: TextStyle(fontSize: 16, color: thirdColor),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Remember, your hard work will pay off!',
+                style: TextStyle(fontSize: 16, color: thirdColor),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Placements are crucial for your future. Stay motivated!',
+                style: TextStyle(fontSize: 16, color: thirdColor),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'You are eligible for placements.',
+                style: TextStyle(fontSize: 16, color: thirdColor),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
 const Color mainColor = Color(0xff6a6446);
 const Color secondaryColor = Color(0xfff2f0e4);
 const Color thirdColor = Color(0xff403a1f);

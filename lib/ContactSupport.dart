@@ -5,7 +5,7 @@ class ContactAndSupportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contact and Support'),
+        title: Text('Placement Policy'),
         backgroundColor: mainColor,
       ),
       body: Padding(
@@ -13,12 +13,12 @@ class ContactAndSupportScreen extends StatelessWidget {
         child: ListView(
           children: [
             CardView(
-              title: 'Contact Information',
+              title: 'Contact and Policy',
               content: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Email: crcs.helpdesk@srmap.edu.in',
+                    'Please note: Students are encouraged to consult the detailed attendance records for additional clarification on the consolidated attendance mentioned above. Moreover, students should only be marked as "present" if they have devoted a minimum of 80% of the session\'s duration to participation. This especially applies to students who have been involved in placement processes.',
                     style: TextStyle(fontSize: 16, color: thirdColor),
                   ),
                   SizedBox(height: 8),
